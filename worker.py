@@ -14,7 +14,7 @@ from temporalio.worker import Worker
 
 from activities.host_info import collect_host_info
 from activities.updates import check_updates
-from common import CONTROLLER_QUEUE, host_queue, local_hostname
+from common import CONTROLLER_QUEUE, host_queue, host_workflow_id, local_hostname
 from workflows.host import HostWorkflow
 
 
@@ -27,6 +27,21 @@ async def main() -> None:
     args = p.parse_args()
 
     client = await Client.connect(args.address, namespace=args.namespace)
+
+    if args.role in ("host", "both"):
+        # Register this host's entity (signal-with-start: idempotent, and the signal
+        # triggers an immediate refresh). Started by name so a host agent doesn't need
+        # to import the workflow. Deliberately not caught: if registration fails, crash
+        # so systemd restarts us and the cause shows up in the logs, rather than running
+        # as a host the dashboard never sees.
+        await client.start_workflow(
+            "HostWorkflow",
+            args=[args.hostname],
+            id=host_workflow_id(args.hostname),
+            task_queue=CONTROLLER_QUEUE,
+            start_signal="force_refresh",
+        )
+
     workers = []
 
     with ThreadPoolExecutor(max_workers=4) as executor:

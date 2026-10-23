@@ -5,8 +5,8 @@
     uv sync
 
     temporal server start-dev            # terminal 1
-    uv run worker.py                     # terminal 2 (controller + host worker)
-    uv run starter.py                    # terminal 3
+    uv run worker.py                     # terminal 2 (controller + host worker; registers the host's entity)
+    uv run starter.py                    # terminal 3 (optional: prints the snapshot)
 
 Query it any time:
 

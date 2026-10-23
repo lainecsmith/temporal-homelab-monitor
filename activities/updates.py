@@ -49,6 +49,9 @@ def _apt() -> dict:
         packages.append({
             "name": m.group(1), "current": m.group(4), "available": m.group(3), "security": is_security,
         })
+    # _host_result caps the stored list, so put security updates first or they can fall off the end.
+    # The sort is stable: apt's order is kept within each group.
+    packages.sort(key=lambda p: not p["security"])
     try:
         index_age_h = round((time.time() - os.path.getmtime("/var/cache/apt/pkgcache.bin")) / 3600, 1)
     except OSError:

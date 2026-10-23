@@ -51,11 +51,15 @@ class HostWorkflow:
             except asyncio.TimeoutError:
                 pass
 
-            if workflow.info().is_continue_as_new_suggested():
+            # A pending check_updates request isn't carried across continue-as-new, so hold off
+            # until the loop has started that check. Re-checked after the awaits because a
+            # signal can arrive while they run.
+            if workflow.info().is_continue_as_new_suggested() and not self.update_check_requested:
                 await workflow.wait_condition(workflow.all_handlers_finished)
                 if self.update_task:
                     await self.update_task
-                workflow.continue_as_new(args=[self.host, self.state])
+                if not self.update_check_requested:
+                    workflow.continue_as_new(args=[self.host, self.state])
 
     async def _collect(self) -> None:
         try:

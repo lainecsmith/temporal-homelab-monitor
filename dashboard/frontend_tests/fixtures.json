@@ -1,0 +1,2698 @@
+{
+ "fleet_controller_down": {
+  "control_plane": {
+   "checked_at": "2026-10-23T14:02:15+00:00",
+   "detail": "No worker is polling the controller queue.",
+   "state": "controller_down"
+  },
+  "fleet": {
+   "failed_check_hosts": [],
+   "hosts_collecting": 0,
+   "hosts_offline": 1,
+   "hosts_online": 4,
+   "hosts_total": 5,
+   "image_updates": {
+    "covered": 4,
+    "of": 4,
+    "total": 5
+   },
+   "os_updates": {
+    "covered": 5,
+    "of": 5,
+    "total": 40
+   },
+   "reboot_required": {
+    "covered": 5,
+    "hosts": [
+     "media-server"
+    ],
+    "of": 5
+   },
+   "security_updates": {
+    "covered": 5,
+    "of": 5,
+    "total": 11
+   }
+  },
+  "generated_at": "2026-10-23T14:02:15+00:00",
+  "hosts": [
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 20.0,
+       "cpu_pct_of_host": 5.0,
+       "health": null,
+       "image": "ollama/ollama:0.3.0",
+       "image_name": "ollama/ollama",
+       "image_tag": "0.3.0",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "ollama",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 1,
+     "state": "ok",
+     "total": 1
+    },
+    "has_data": true,
+    "host": "gpu-box",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": null,
+     "oldest_update_days": 0,
+     "stale": true,
+     "stale_reason": "controller_down"
+    },
+    "metrics": {
+     "arch": "x86_64",
+     "cpu_cores": 4,
+     "cpu_pct": 10.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 40.0,
+     "gpus": [
+      {
+       "memory_total_mb": 12282,
+       "memory_used_mb": 1500,
+       "name": "RTX 4070",
+       "temp_c": 51,
+       "utilization_pct": 12
+      }
+     ],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 25.0,
+     "mem_total_mb": 8000,
+     "mem_used_mb": 2000,
+     "os": "Ubuntu 24.04",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 1,
+     "os_applicable": true,
+     "os_updates": 0,
+     "reboot_required": false,
+     "security_updates": 0
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "ollama"
+        ],
+        "image": "ollama/ollama:0.3.0",
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 1
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 0,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [],
+      "reboot_required": false,
+      "security_count": 0,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 40.0,
+       "cpu_pct_of_host": 10.0,
+       "health": null,
+       "image": "plexinc/pms-docker:1.41",
+       "image_name": "plexinc/pms-docker",
+       "image_tag": "1.41",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "plex",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 1,
+     "state": "ok",
+     "total": 1
+    },
+    "has_data": true,
+    "host": "media-server",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": 0,
+     "oldest_update_days": 0,
+     "stale": true,
+     "stale_reason": "controller_down"
+    },
+    "metrics": {
+     "arch": "x86_64",
+     "cpu_cores": 4,
+     "cpu_pct": 23.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 74.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 61.0,
+     "mem_total_mb": 16000,
+     "mem_used_mb": 9760,
+     "os": "Ubuntu 24.04",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 1,
+     "os_applicable": true,
+     "os_updates": 12,
+     "reboot_required": true,
+     "security_updates": 3
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "plex"
+        ],
+        "image": "plexinc/pms-docker:1.41",
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 1
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 12,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-2",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-3",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-4",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-5",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-6",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-7",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-8",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-9",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-10",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-11",
+        "security": false
+       }
+      ],
+      "reboot_required": true,
+      "security_count": 3,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 34.0,
+       "cpu_pct_of_host": 8.5,
+       "health": null,
+       "image": "jellyfin/jellyfin:10.10.3",
+       "image_name": "jellyfin/jellyfin",
+       "image_tag": "10.10.3",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "jellyfin",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": "10.11.2",
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 6.4,
+       "cpu_pct_of_host": 1.6,
+       "health": null,
+       "image": "postgres:16.4",
+       "image_name": "postgres",
+       "image_tag": "16.4",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "postgres",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": "18.6",
+        "newest_tag_same_major": "16.15",
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 16.8,
+       "cpu_pct_of_host": 4.2,
+       "health": null,
+       "image": "nextcloud:29-apache",
+       "image_name": "nextcloud",
+       "image_tag": "29-apache",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "nextcloud",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 2.4,
+       "cpu_pct_of_host": 0.6,
+       "health": null,
+       "image": "redis:7.4-alpine",
+       "image_name": "redis",
+       "image_tag": "7.4-alpine",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "redis",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 0.8,
+       "cpu_pct_of_host": 0.2,
+       "health": "unhealthy",
+       "image": "homelab/dashboard:dev",
+       "image_name": "homelab/dashboard",
+       "image_tag": "dev",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "dashboard",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": null,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": "image has no registry digest (built locally?)",
+        "state": "unknown",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": null,
+       "cpu_pct_of_host": null,
+       "health": null,
+       "image": "restic/restic:latest",
+       "image_name": "restic/restic",
+       "image_tag": "latest",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": null,
+       "name": "restic-backup",
+       "ports": "",
+       "state": "exited",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 5,
+     "state": "ok",
+     "total": 6
+    },
+    "has_data": true,
+    "host": "nas",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": 0,
+     "oldest_update_days": 0,
+     "stale": true,
+     "stale_reason": "controller_down"
+    },
+    "metrics": {
+     "arch": "x86_64",
+     "cpu_cores": 4,
+     "cpu_pct": 11.0,
+     "disk_total_gb": 458.0,
+     "disk_used_pct": 88.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 84.1,
+     "mem_total_mb": 32000,
+     "mem_used_mb": 26900,
+     "os": "Ubuntu 24.04",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 3,
+     "os_applicable": true,
+     "os_updates": 21,
+     "reboot_required": false,
+     "security_updates": 8
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "jellyfin"
+        ],
+        "image": "jellyfin/jellyfin:10.10.3",
+        "new_build": false,
+        "newest_tag": "10.11.2",
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "postgres"
+        ],
+        "image": "postgres:16.4",
+        "new_build": true,
+        "newest_tag": "18.6",
+        "newest_tag_same_major": "16.15",
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "nextcloud"
+        ],
+        "image": "nextcloud:29-apache",
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "redis"
+        ],
+        "image": "redis:7.4-alpine",
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "dashboard"
+        ],
+        "image": "homelab/dashboard:dev",
+        "new_build": null,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": "image has no registry digest (built locally?)",
+        "state": "unknown",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "restic-backup"
+        ],
+        "image": "restic/restic:latest",
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 3
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 21,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-2",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-3",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-4",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-5",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-6",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-7",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-8",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-9",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-10",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-11",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-12",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-13",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-14",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-15",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-16",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-17",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-18",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-19",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-20",
+        "security": false
+       }
+      ],
+      "reboot_required": false,
+      "security_count": 8,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [],
+     "error": null,
+     "hint": null,
+     "running": 0,
+     "state": "absent",
+     "total": 0
+    },
+    "has_data": true,
+    "host": "pi-garage",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": null,
+     "oldest_update_days": 0,
+     "stale": true,
+     "stale_reason": "controller_down"
+    },
+    "metrics": {
+     "arch": "aarch64",
+     "cpu_cores": 4,
+     "cpu_pct": 10.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 40.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 25.0,
+     "mem_total_mb": 8000,
+     "mem_used_mb": 2000,
+     "os": "Raspberry Pi OS (Debian 12)",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "offline",
+    "summary": {
+     "has_docker": false,
+     "image_updates": null,
+     "os_applicable": true,
+     "os_updates": 2,
+     "reboot_required": false,
+     "security_updates": 0
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [],
+      "state": "not_applicable",
+      "updates": null
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 2,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": false
+       }
+      ],
+      "reboot_required": false,
+      "security_count": 0,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 1.0,
+       "cpu_pct_of_host": 0.2,
+       "health": null,
+       "image": "pihole/pihole:2024.07.0",
+       "image_name": "pihole/pihole",
+       "image_tag": "2024.07.0",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "pihole",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 1,
+     "state": "ok",
+     "total": 1
+    },
+    "has_data": true,
+    "host": "pi-hole",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": null,
+     "oldest_update_days": 0,
+     "stale": true,
+     "stale_reason": "controller_down"
+    },
+    "metrics": {
+     "arch": "aarch64",
+     "cpu_cores": 4,
+     "cpu_pct": 10.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 40.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 25.0,
+     "mem_total_mb": 8000,
+     "mem_used_mb": 2000,
+     "os": "Raspberry Pi OS (Debian 12)",
+     "pi": {
+      "soc_temp": "temp=52.1'C",
+      "throttled": "throttled=0x0"
+     },
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 0,
+     "os_applicable": true,
+     "os_updates": 5,
+     "reboot_required": false,
+     "security_updates": 0
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "pihole"
+        ],
+        "image": "pihole/pihole:2024.07.0",
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 0
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 5,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-2",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-3",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-4",
+        "security": false
+       }
+      ],
+      "reboot_required": false,
+      "security_count": 0,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   }
+  ]
+ },
+ "fleet_ok": {
+  "control_plane": {
+   "checked_at": "2026-10-23T14:02:15+00:00",
+   "detail": null,
+   "state": "ok"
+  },
+  "fleet": {
+   "failed_check_hosts": [],
+   "hosts_collecting": 0,
+   "hosts_offline": 1,
+   "hosts_online": 4,
+   "hosts_total": 5,
+   "image_updates": {
+    "covered": 4,
+    "of": 4,
+    "total": 5
+   },
+   "os_updates": {
+    "covered": 5,
+    "of": 5,
+    "total": 40
+   },
+   "reboot_required": {
+    "covered": 5,
+    "hosts": [
+     "media-server"
+    ],
+    "of": 5
+   },
+   "security_updates": {
+    "covered": 5,
+    "of": 5,
+    "total": 11
+   }
+  },
+  "generated_at": "2026-10-23T14:02:15+00:00",
+  "hosts": [
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 20.0,
+       "cpu_pct_of_host": 5.0,
+       "health": null,
+       "image": "ollama/ollama:0.3.0",
+       "image_name": "ollama/ollama",
+       "image_tag": "0.3.0",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "ollama",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 1,
+     "state": "ok",
+     "total": 1
+    },
+    "has_data": true,
+    "host": "gpu-box",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": null,
+     "oldest_update_days": 0,
+     "stale": false,
+     "stale_reason": null
+    },
+    "metrics": {
+     "arch": "x86_64",
+     "cpu_cores": 4,
+     "cpu_pct": 10.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 40.0,
+     "gpus": [
+      {
+       "memory_total_mb": 12282,
+       "memory_used_mb": 1500,
+       "name": "RTX 4070",
+       "temp_c": 51,
+       "utilization_pct": 12
+      }
+     ],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 25.0,
+     "mem_total_mb": 8000,
+     "mem_used_mb": 2000,
+     "os": "Ubuntu 24.04",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 1,
+     "os_applicable": true,
+     "os_updates": 0,
+     "reboot_required": false,
+     "security_updates": 0
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "ollama"
+        ],
+        "image": "ollama/ollama:0.3.0",
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 1
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 0,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [],
+      "reboot_required": false,
+      "security_count": 0,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 40.0,
+       "cpu_pct_of_host": 10.0,
+       "health": null,
+       "image": "plexinc/pms-docker:1.41",
+       "image_name": "plexinc/pms-docker",
+       "image_tag": "1.41",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "plex",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 1,
+     "state": "ok",
+     "total": 1
+    },
+    "has_data": true,
+    "host": "media-server",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": 0,
+     "oldest_update_days": 0,
+     "stale": false,
+     "stale_reason": null
+    },
+    "metrics": {
+     "arch": "x86_64",
+     "cpu_cores": 4,
+     "cpu_pct": 23.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 74.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 61.0,
+     "mem_total_mb": 16000,
+     "mem_used_mb": 9760,
+     "os": "Ubuntu 24.04",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 1,
+     "os_applicable": true,
+     "os_updates": 12,
+     "reboot_required": true,
+     "security_updates": 3
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "plex"
+        ],
+        "image": "plexinc/pms-docker:1.41",
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 1
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 12,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-2",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-3",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-4",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-5",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-6",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-7",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-8",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-9",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-10",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-11",
+        "security": false
+       }
+      ],
+      "reboot_required": true,
+      "security_count": 3,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 34.0,
+       "cpu_pct_of_host": 8.5,
+       "health": null,
+       "image": "jellyfin/jellyfin:10.10.3",
+       "image_name": "jellyfin/jellyfin",
+       "image_tag": "10.10.3",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "jellyfin",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": "10.11.2",
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 6.4,
+       "cpu_pct_of_host": 1.6,
+       "health": null,
+       "image": "postgres:16.4",
+       "image_name": "postgres",
+       "image_tag": "16.4",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "postgres",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": "18.6",
+        "newest_tag_same_major": "16.15",
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 16.8,
+       "cpu_pct_of_host": 4.2,
+       "health": null,
+       "image": "nextcloud:29-apache",
+       "image_name": "nextcloud",
+       "image_tag": "29-apache",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "nextcloud",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 2.4,
+       "cpu_pct_of_host": 0.6,
+       "health": null,
+       "image": "redis:7.4-alpine",
+       "image_name": "redis",
+       "image_tag": "7.4-alpine",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "redis",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": 0.8,
+       "cpu_pct_of_host": 0.2,
+       "health": "unhealthy",
+       "image": "homelab/dashboard:dev",
+       "image_name": "homelab/dashboard",
+       "image_tag": "dev",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "dashboard",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": null,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": "image has no registry digest (built locally?)",
+        "state": "unknown",
+        "tags_error": null
+       }
+      },
+      {
+       "cpu_pct": null,
+       "cpu_pct_of_host": null,
+       "health": null,
+       "image": "restic/restic:latest",
+       "image_name": "restic/restic",
+       "image_tag": "latest",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": null,
+       "name": "restic-backup",
+       "ports": "",
+       "state": "exited",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 5,
+     "state": "ok",
+     "total": 6
+    },
+    "has_data": true,
+    "host": "nas",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": 0,
+     "oldest_update_days": 0,
+     "stale": false,
+     "stale_reason": null
+    },
+    "metrics": {
+     "arch": "x86_64",
+     "cpu_cores": 4,
+     "cpu_pct": 11.0,
+     "disk_total_gb": 458.0,
+     "disk_used_pct": 88.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 84.1,
+     "mem_total_mb": 32000,
+     "mem_used_mb": 26900,
+     "os": "Ubuntu 24.04",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 3,
+     "os_applicable": true,
+     "os_updates": 21,
+     "reboot_required": false,
+     "security_updates": 8
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "jellyfin"
+        ],
+        "image": "jellyfin/jellyfin:10.10.3",
+        "new_build": false,
+        "newest_tag": "10.11.2",
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "postgres"
+        ],
+        "image": "postgres:16.4",
+        "new_build": true,
+        "newest_tag": "18.6",
+        "newest_tag_same_major": "16.15",
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "nextcloud"
+        ],
+        "image": "nextcloud:29-apache",
+        "new_build": true,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "update_available",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "redis"
+        ],
+        "image": "redis:7.4-alpine",
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "dashboard"
+        ],
+        "image": "homelab/dashboard:dev",
+        "new_build": null,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": "image has no registry digest (built locally?)",
+        "state": "unknown",
+        "tags_error": null
+       },
+       {
+        "containers": [
+         "restic-backup"
+        ],
+        "image": "restic/restic:latest",
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 3
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 21,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-2",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-3",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-4",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-5",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-6",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-7",
+        "security": true
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-8",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-9",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-10",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-11",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-12",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-13",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-14",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-15",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-16",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-17",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-18",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-19",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-20",
+        "security": false
+       }
+      ],
+      "reboot_required": false,
+      "security_count": 8,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [],
+     "error": null,
+     "hint": null,
+     "running": 0,
+     "state": "absent",
+     "total": 0
+    },
+    "has_data": true,
+    "host": "pi-garage",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": null,
+     "oldest_update_days": 0,
+     "stale": false,
+     "stale_reason": null
+    },
+    "metrics": {
+     "arch": "aarch64",
+     "cpu_cores": 4,
+     "cpu_pct": 10.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 40.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 25.0,
+     "mem_total_mb": 8000,
+     "mem_used_mb": 2000,
+     "os": "Raspberry Pi OS (Debian 12)",
+     "pi": null,
+     "uptime_s": 1000
+    },
+    "state": "offline",
+    "summary": {
+     "has_docker": false,
+     "image_updates": null,
+     "os_applicable": true,
+     "os_updates": 2,
+     "reboot_required": false,
+     "security_updates": 0
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [],
+      "state": "not_applicable",
+      "updates": null
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 2,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": false
+       }
+      ],
+      "reboot_required": false,
+      "security_count": 0,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   },
+   {
+    "docker": {
+     "containers": [
+      {
+       "cpu_pct": 1.0,
+       "cpu_pct_of_host": 0.2,
+       "health": null,
+       "image": "pihole/pihole:2024.07.0",
+       "image_name": "pihole/pihole",
+       "image_tag": "2024.07.0",
+       "image_version": null,
+       "mem_limit_mb": 1000.0,
+       "mem_pct": 10.0,
+       "mem_used_mb": 100.0,
+       "name": "pihole",
+       "ports": "",
+       "state": "running",
+       "status": "Up 2 hours",
+       "update": {
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      }
+     ],
+     "error": null,
+     "hint": null,
+     "running": 1,
+     "state": "ok",
+     "total": 1
+    },
+    "has_data": true,
+    "host": "pi-hole",
+    "last_error": null,
+    "last_seen": "2026-10-23T14:02:11+00:00",
+    "meta": {
+     "error": null,
+     "fetched_at": "2026-10-23T14:02:15+00:00",
+     "oldest_security_update_days": null,
+     "oldest_update_days": 0,
+     "stale": false,
+     "stale_reason": null
+    },
+    "metrics": {
+     "arch": "aarch64",
+     "cpu_cores": 4,
+     "cpu_pct": 10.0,
+     "disk_total_gb": 100.0,
+     "disk_used_pct": 40.0,
+     "gpus": [],
+     "kernel": "6.8",
+     "load_avg": [
+      0.1,
+      0.1,
+      0.1
+     ],
+     "mem_pct": 25.0,
+     "mem_total_mb": 8000,
+     "mem_used_mb": 2000,
+     "os": "Raspberry Pi OS (Debian 12)",
+     "pi": {
+      "soc_temp": "temp=52.1'C",
+      "throttled": "throttled=0x0"
+     },
+     "uptime_s": 1000
+    },
+    "state": "online",
+    "summary": {
+     "has_docker": true,
+     "image_updates": 0,
+     "os_applicable": true,
+     "os_updates": 5,
+     "reboot_required": false,
+     "security_updates": 0
+    },
+    "updates": {
+     "checked_at": "2026-10-23T12:00:00+00:00",
+     "data_is_stale": false,
+     "error": null,
+     "images": {
+      "error": null,
+      "items": [
+       {
+        "containers": [
+         "pihole"
+        ],
+        "image": "pihole/pihole:2024.07.0",
+        "new_build": false,
+        "newest_tag": null,
+        "newest_tag_same_major": null,
+        "reason": null,
+        "state": "up_to_date",
+        "tags_error": null
+       }
+      ],
+      "state": "ok",
+      "updates": 0
+     },
+     "last_attempt_at": "2026-10-23T12:00:00+00:00",
+     "os": {
+      "count": 5,
+      "error": null,
+      "hidden_count": 0,
+      "index_age_h": 3.0,
+      "index_stale": false,
+      "manager": "apt",
+      "packages": [
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "openssl",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-1",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-2",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-3",
+        "security": false
+       },
+       {
+        "available": "1.1",
+        "current": "1.0",
+        "name": "pkg-4",
+        "security": false
+       }
+      ],
+      "reboot_required": false,
+      "security_count": 0,
+      "state": "ok",
+      "zero_is_stale": false
+     },
+     "state": "ok"
+    }
+   }
+  ]
+ },
+ "host_nas": {
+  "docker": {
+   "containers": [
+    {
+     "cpu_pct": 34.0,
+     "cpu_pct_of_host": 8.5,
+     "health": null,
+     "image": "jellyfin/jellyfin:10.10.3",
+     "image_name": "jellyfin/jellyfin",
+     "image_tag": "10.10.3",
+     "image_version": null,
+     "mem_limit_mb": 1000.0,
+     "mem_pct": 10.0,
+     "mem_used_mb": 100.0,
+     "name": "jellyfin",
+     "ports": "",
+     "state": "running",
+     "status": "Up 2 hours",
+     "update": {
+      "new_build": false,
+      "newest_tag": "10.11.2",
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "update_available",
+      "tags_error": null
+     }
+    },
+    {
+     "cpu_pct": 6.4,
+     "cpu_pct_of_host": 1.6,
+     "health": null,
+     "image": "postgres:16.4",
+     "image_name": "postgres",
+     "image_tag": "16.4",
+     "image_version": null,
+     "mem_limit_mb": 1000.0,
+     "mem_pct": 10.0,
+     "mem_used_mb": 100.0,
+     "name": "postgres",
+     "ports": "",
+     "state": "running",
+     "status": "Up 2 hours",
+     "update": {
+      "new_build": true,
+      "newest_tag": "18.6",
+      "newest_tag_same_major": "16.15",
+      "reason": null,
+      "state": "update_available",
+      "tags_error": null
+     }
+    },
+    {
+     "cpu_pct": 16.8,
+     "cpu_pct_of_host": 4.2,
+     "health": null,
+     "image": "nextcloud:29-apache",
+     "image_name": "nextcloud",
+     "image_tag": "29-apache",
+     "image_version": null,
+     "mem_limit_mb": 1000.0,
+     "mem_pct": 10.0,
+     "mem_used_mb": 100.0,
+     "name": "nextcloud",
+     "ports": "",
+     "state": "running",
+     "status": "Up 2 hours",
+     "update": {
+      "new_build": true,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "update_available",
+      "tags_error": null
+     }
+    },
+    {
+     "cpu_pct": 2.4,
+     "cpu_pct_of_host": 0.6,
+     "health": null,
+     "image": "redis:7.4-alpine",
+     "image_name": "redis",
+     "image_tag": "7.4-alpine",
+     "image_version": null,
+     "mem_limit_mb": 1000.0,
+     "mem_pct": 10.0,
+     "mem_used_mb": 100.0,
+     "name": "redis",
+     "ports": "",
+     "state": "running",
+     "status": "Up 2 hours",
+     "update": {
+      "new_build": false,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "up_to_date",
+      "tags_error": null
+     }
+    },
+    {
+     "cpu_pct": 0.8,
+     "cpu_pct_of_host": 0.2,
+     "health": "unhealthy",
+     "image": "homelab/dashboard:dev",
+     "image_name": "homelab/dashboard",
+     "image_tag": "dev",
+     "image_version": null,
+     "mem_limit_mb": 1000.0,
+     "mem_pct": 10.0,
+     "mem_used_mb": 100.0,
+     "name": "dashboard",
+     "ports": "",
+     "state": "running",
+     "status": "Up 2 hours",
+     "update": {
+      "new_build": null,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": "image has no registry digest (built locally?)",
+      "state": "unknown",
+      "tags_error": null
+     }
+    },
+    {
+     "cpu_pct": null,
+     "cpu_pct_of_host": null,
+     "health": null,
+     "image": "restic/restic:latest",
+     "image_name": "restic/restic",
+     "image_tag": "latest",
+     "image_version": null,
+     "mem_limit_mb": 1000.0,
+     "mem_pct": 10.0,
+     "mem_used_mb": null,
+     "name": "restic-backup",
+     "ports": "",
+     "state": "exited",
+     "status": "Up 2 hours",
+     "update": {
+      "new_build": false,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "up_to_date",
+      "tags_error": null
+     }
+    }
+   ],
+   "error": null,
+   "hint": null,
+   "running": 5,
+   "state": "ok",
+   "total": 6
+  },
+  "has_data": true,
+  "host": "nas",
+  "last_error": null,
+  "last_seen": "2026-10-23T14:02:11+00:00",
+  "meta": {
+   "error": null,
+   "fetched_at": "2026-10-23T14:02:15+00:00",
+   "oldest_security_update_days": 0,
+   "oldest_update_days": 0,
+   "stale": false,
+   "stale_reason": null
+  },
+  "metrics": {
+   "arch": "x86_64",
+   "cpu_cores": 4,
+   "cpu_pct": 11.0,
+   "disk_total_gb": 458.0,
+   "disk_used_pct": 88.0,
+   "gpus": [],
+   "kernel": "6.8",
+   "load_avg": [
+    0.1,
+    0.1,
+    0.1
+   ],
+   "mem_pct": 84.1,
+   "mem_total_mb": 32000,
+   "mem_used_mb": 26900,
+   "os": "Ubuntu 24.04",
+   "pi": null,
+   "uptime_s": 1000
+  },
+  "pending_updates": [
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "openssl"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-1"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-2"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-3"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-4"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-5"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-6"
+   },
+   {
+    "age_days": 41,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 1,
+    "kind": "os_package",
+    "name": "pkg-7"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-8"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-9"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-10"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-11"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-12"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-13"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-14"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-15"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-16"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-17"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-18"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-19"
+   },
+   {
+    "age_days": 7,
+    "available_version": "1.1",
+    "current_version": "1.0",
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": 0,
+    "kind": "os_package",
+    "name": "pkg-20"
+   },
+   {
+    "age_days": 12,
+    "available_version": "10.11.2",
+    "current_version": null,
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": null,
+    "kind": "image_tag",
+    "name": "jellyfin/jellyfin:10.10.3"
+   },
+   {
+    "age_days": 12,
+    "available_version": null,
+    "current_version": null,
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": null,
+    "kind": "image_build",
+    "name": "postgres:16.4"
+   },
+   {
+    "age_days": 12,
+    "available_version": "16.15",
+    "current_version": null,
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": null,
+    "kind": "image_tag",
+    "name": "postgres:16.4"
+   },
+   {
+    "age_days": 12,
+    "available_version": null,
+    "current_version": null,
+    "first_seen_at": "2026-10-23T12:00:00+00:00",
+    "host": "nas",
+    "is_security": null,
+    "kind": "image_build",
+    "name": "nextcloud:29-apache"
+   }
+  ],
+  "state": "online",
+  "summary": {
+   "has_docker": true,
+   "image_updates": 3,
+   "os_applicable": true,
+   "os_updates": 21,
+   "reboot_required": false,
+   "security_updates": 8
+  },
+  "updates": {
+   "checked_at": "2026-10-23T12:00:00+00:00",
+   "data_is_stale": false,
+   "error": null,
+   "images": {
+    "error": null,
+    "items": [
+     {
+      "containers": [
+       "jellyfin"
+      ],
+      "image": "jellyfin/jellyfin:10.10.3",
+      "new_build": false,
+      "newest_tag": "10.11.2",
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "update_available",
+      "tags_error": null
+     },
+     {
+      "containers": [
+       "postgres"
+      ],
+      "image": "postgres:16.4",
+      "new_build": true,
+      "newest_tag": "18.6",
+      "newest_tag_same_major": "16.15",
+      "reason": null,
+      "state": "update_available",
+      "tags_error": null
+     },
+     {
+      "containers": [
+       "nextcloud"
+      ],
+      "image": "nextcloud:29-apache",
+      "new_build": true,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "update_available",
+      "tags_error": null
+     },
+     {
+      "containers": [
+       "redis"
+      ],
+      "image": "redis:7.4-alpine",
+      "new_build": false,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "up_to_date",
+      "tags_error": null
+     },
+     {
+      "containers": [
+       "dashboard"
+      ],
+      "image": "homelab/dashboard:dev",
+      "new_build": null,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": "image has no registry digest (built locally?)",
+      "state": "unknown",
+      "tags_error": null
+     },
+     {
+      "containers": [
+       "restic-backup"
+      ],
+      "image": "restic/restic:latest",
+      "new_build": false,
+      "newest_tag": null,
+      "newest_tag_same_major": null,
+      "reason": null,
+      "state": "up_to_date",
+      "tags_error": null
+     }
+    ],
+    "state": "ok",
+    "updates": 3
+   },
+   "last_attempt_at": "2026-10-23T12:00:00+00:00",
+   "os": {
+    "count": 21,
+    "error": null,
+    "hidden_count": 0,
+    "index_age_h": 3.0,
+    "index_stale": false,
+    "manager": "apt",
+    "packages": [
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "openssl",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-1",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-2",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-3",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-4",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-5",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-6",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-7",
+      "security": true
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-8",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-9",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-10",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-11",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-12",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-13",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-14",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-15",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-16",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-17",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-18",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-19",
+      "security": false
+     },
+     {
+      "available": "1.1",
+      "current": "1.0",
+      "name": "pkg-20",
+      "security": false
+     }
+    ],
+    "reboot_required": false,
+    "security_count": 8,
+    "state": "ok",
+    "zero_is_stale": false
+   },
+   "state": "ok"
+  }
+ }
+}
