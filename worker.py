@@ -13,6 +13,7 @@ from temporalio.client import Client
 from temporalio.worker import Worker
 
 from activities.host_info import collect_host_info
+from activities.updates import check_updates
 from common import CONTROLLER_QUEUE, host_queue, local_hostname
 from workflows.host import HostWorkflow
 
@@ -37,7 +38,7 @@ async def main() -> None:
             workers.append(Worker(
                 client,
                 task_queue=host_queue(args.hostname),
-                activities=[collect_host_info],
+                activities=[collect_host_info, check_updates],
                 activity_executor=executor,
             ))
 
