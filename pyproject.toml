@@ -1,0 +1,13 @@
+[project]
+name = "temporal-homelab-monitor"
+version = "0.1.0"
+description = "Homelab host monitor built on Temporal"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "temporalio>=1.7",
+    "psutil>=5.9",
+]
+
+[tool.uv]
+package = false
