@@ -67,40 +67,102 @@ cycle (schedule_to_start timeout). Start it again and it returns to "online".
 Ansible deploys both roles against an existing Temporal server:
 
 - **Central box:** the controller worker and the dashboard run in Docker
-  Compose ([deploy/docker-compose.yml](deploy/docker-compose.yml)). The machine
-  needs Docker with the Compose plugin.
+  Compose ([deploy/docker-compose.yml](deploy/docker-compose.yml)), checked
+  out to `/opt/homelab-monitor-controller`.
 - **Each monitored host:** the host worker runs natively as the
-  `homelab-monitor-host` systemd service, as a `homelab-monitor` system user.
-  It isn't containerized because it reports on the host itself. Supports
-  Ubuntu and 64-bit Raspberry Pi OS; 32-bit is refused because the Temporal
-  Python SDK has no 32-bit ARM builds.
+  `homelab-monitor-host` systemd service, as a `homelab-monitor` system user,
+  checked out to `/opt/homelab-monitor`. It isn't containerized because it
+  reports on the host itself.
 
-Hosts clone this repo from GitHub, so push before deploying. Then, from your
-own machine:
+Every machine clones this repo from GitHub, so a deploy only picks up commits
+you've pushed. Run all commands below from `deploy/ansible` on your own
+machine.
 
-    cd deploy/ansible
-    cp inventory.example.yml inventory.yml    # fill in temporal_address and your machines
-    ansible-playbook site.yml                 # add --ask-become-pass if sudo needs a password
+### First deploy
 
-Re-run the same command to update everything. To update only the hosts, add
-`--limit monitored`. To deploy a branch, tag or commit other than `main`, add
-`-e monitor_version=<ref>`. Deploy the controller and the host workers
-together so their code stays in step.
+1. **Check the prerequisites.**
+   - Ansible on your machine (`pipx install ansible-core`), or prefix each
+     `ansible*` command with `uvx --from ansible-core`.
+   - SSH key access to every machine, as a user that can `sudo`.
+   - Every host runs Ubuntu or 64-bit Raspberry Pi OS. On each Pi,
+     `dpkg --print-architecture` must print `arm64`; the playbook refuses
+     32-bit, because the Temporal Python SDK has no 32-bit ARM builds.
+   - The central box has Docker with the Compose plugin
+     (`docker compose version` works).
+   - The Temporal server is running, and every machine can reach it on port
+     7233.
 
-On the central box, `temporal_address` has to be the server's LAN address,
-not `localhost`, because the containers resolve `localhost` to themselves. The
-dashboard listens on port 8000 on all interfaces and has no authentication;
-set `dashboard_bind: 127.0.0.1` in the inventory to keep it local.
+2. **Write the inventory.**
 
-If Docker is already installed on a host, the playbook adds the service user
-to the `docker` group. That gives the user root-equivalent access to the
-machine; it's what lets the worker list containers. If you install Docker
-later, re-run the playbook.
+        cp inventory.example.yml inventory.yml
+
+   Set `temporal_address` to the server's LAN address, not `localhost`
+   (inside the containers, `localhost` is the container itself). Put the
+   central box under `controller`, and every machine to monitor under
+   `monitored`; the central box can be in both. `inventory.yml` is
+   git-ignored.
+
+3. **Check Ansible can reach everything.**
+
+        ansible all -m ping
+
+4. **Deploy.**
+
+        ansible-playbook site.yml    # add --ask-become-pass if sudo needs a password
+
+   The first run on the central box builds the Docker image, which takes a
+   few minutes.
+
+5. **Check it worked.**
+   - Dashboard: `http://<central-box>:8000`. Each host should appear within a
+     minute.
+   - A host's worker: `systemctl status homelab-monitor-host`.
+   - From Temporal:
+     `temporal workflow list --address <temporal>:7233 --query 'WorkflowType="HostWorkflow"'`
+     lists one `host-<name>` workflow per host.
+
+### Later deploys
+
+Push your changes to `main`, then:
+
+    ansible-playbook site.yml
+
+The playbook only restarts a host worker when its code, dependencies, unit
+file or group membership changed. The central box always rebuilds the image,
+but only recreates containers when it changed.
+
+Deploy the controller and the host workers together (the plain command
+above) so their code stays in step. Other options:
+
+- **A different branch, tag or commit** (including rolling back to an older
+  one): `ansible-playbook site.yml -e monitor_version=<ref>`. The next plain
+  run goes back to `main`.
+- **Add a host:** add it under `monitored` in the inventory, then
+  `ansible-playbook site.yml --limit <name>`.
+- **Remove a host:** the playbook doesn't do this. Stop the worker and end its
+  workflow:
+
+        ssh <host> sudo systemctl disable --now homelab-monitor-host
+        temporal workflow terminate --address <temporal>:7233 --workflow-id host-<name>
+
+  Then remove it from the inventory. The dashboard keeps showing the host's
+  last known data, marked as not running.
+
+### Security and logs
+
+The dashboard listens on port 8000 on all interfaces and has no
+authentication. Set `dashboard_bind: 127.0.0.1` in the inventory to keep it
+local to the central box.
+
+If Docker is installed on a host, the playbook adds the service user to the
+`docker` group so the worker can list containers. That gives the user
+root-equivalent access to the machine. If you install Docker on a host later,
+re-run the playbook.
 
 Logs:
 
-    journalctl -u homelab-monitor-host -f                                          # on a host
-    docker compose -f /opt/homelab-monitor-controller/deploy/docker-compose.yml logs -f   # central box
+    journalctl -u homelab-monitor-host -f                                                # on a host
+    docker compose -f /opt/homelab-monitor-controller/deploy/docker-compose.yml logs -f  # central box
 
 ## Docker containers
 
