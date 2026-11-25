@@ -204,3 +204,63 @@ updates in the snapshot's `updates`:
 
 Registry lookups use anonymous access, so private images show as `unknown`.
 They don't count against Docker Hub's pull rate limit.
+
+## TODO
+
+### Apply updates from the dashboard
+
+Already listed under "Not done yet" in [dashboard/README.md](dashboard/README.md).
+Plan:
+
+- **Add a replay test first.** Save a real `HostWorkflow` history
+  (`temporal workflow show --workflow-id host-<name> --output json`) and replay
+  it against the current code with the SDK's `Replayer` in pytest. This catches
+  non-determinism errors before a deploy, with or without Worker Versioning.
+- **Keep the workflow change replay-safe.** Add an Update handler (it can return
+  the result to the page, which also fixes the Refresh workaround described in
+  the dashboard README). Start the new `apply_updates` activity only from that
+  handler, or from the loop behind a flag only the handler sets. Running
+  histories never contain the Update, so they replay unchanged. Don't change
+  what the loop does every cycle (adding activities, reordering `_collect` and
+  the update check, changing the wait); if that's ever needed, use
+  `workflow.patched()` or Worker Versioning.
+- **Give the host worker narrow root access.** It runs as the unprivileged
+  `homelab-monitor` user. Have the playbook install a sudoers rule that allows
+  only the specific upgrade commands, and have the activity run only those.
+- **Design the activity for slow, partial work.** Upgrades can take many
+  minutes and can leave a reboot pending: heartbeat, use a long
+  `start_to_close_timeout`, don't retry automatically, and refresh the snapshot
+  (including `reboot_required`) afterwards.
+- **Deploy the hosts first.** Host queues aren't versioned, so if the
+  controller calls `apply_updates` before a host worker has it, that call
+  fails. Run `ansible-playbook site.yml --limit monitored`, then the full
+  playbook.
+
+### Worker Versioning (later)
+
+Not needed for the above. Worth adding when we want to make breaking workflow
+changes without patching.
+
+- **Workflow:** mark `HostWorkflow` Pinned. In the loop, also continue-as-new
+  when `workflow.info().is_target_worker_deployment_version_changed()`, passing
+  `initial_versioning_behavior=ContinueAsNewVersioningBehavior.AUTO_UPGRADE`, so
+  each host moves to a new version within about one 30-second cycle. (Upgrade
+  on continue-as-new is in Public Preview.) Fill new `state` keys with defaults,
+  since a new version receives the previous version's `state`.
+- **Workers:** only the controller gets a `deployment_config`, with the git
+  commit as its build ID. Host workers stay unversioned: they only run
+  activities on their own queues, so their in-place systemd deploy keeps
+  working as long as activity inputs and outputs stay compatible.
+- **Controller deploy:** replace the in-place `docker compose up -d` with:
+  start the new version's container alongside the old one, run
+  `temporal worker deployment set-current-version`, wait until no running
+  workflows are on the old version, then stop the old container. The central
+  box needs the Temporal CLI, or a small SDK script that does the same.
+- **Check first:** the Temporal server must be at least 1.29.1
+  (`temporal operator cluster system`). The dashboard's controller health check
+  counts pollers with `DescribeTaskQueue` ([dashboard/gateway.py](dashboard/gateway.py)),
+  which may not show versioned pollers; if so, it would report the controller
+  as down and needs to describe the worker deployment version instead.
+- **First switch:** existing unversioned workflows move to the first Current
+  version on their next task (within 30 seconds here). Keep the unversioned
+  controller running until they have.
