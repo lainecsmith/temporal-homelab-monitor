@@ -1,0 +1,104 @@
+- name: Require temporal_address
+  ansible.builtin.assert:
+    that: temporal_address is defined
+    fail_msg: Set temporal_address (host:port) in the inventory.
+
+- name: Check the OS architecture
+  ansible.builtin.command: dpkg --print-architecture
+  register: dpkg_arch
+  changed_when: false
+
+- name: Require a 64-bit OS
+  ansible.builtin.assert:
+    that: dpkg_arch.stdout in ['amd64', 'arm64']
+    fail_msg: >-
+      {{ inventory_hostname }} has a {{ dpkg_arch.stdout }} userland. The Temporal Python SDK
+      only ships 64-bit Linux builds, so use the 64-bit Raspberry Pi OS.
+
+- name: Install packages
+  ansible.builtin.apt:
+    name: [git, acl, ca-certificates, curl]
+    state: present
+    update_cache: true
+    cache_valid_time: 86400
+
+- name: Create the service user
+  ansible.builtin.user:
+    name: "{{ monitor_user }}"
+    system: true
+    home: "{{ monitor_home }}"
+    create_home: true
+    shell: /usr/sbin/nologin
+
+- name: Look for a docker group
+  ansible.builtin.command: getent group docker
+  register: docker_group
+  changed_when: false
+  failed_when: docker_group.rc not in [0, 2]
+
+- name: Let the service user read Docker
+  ansible.builtin.user:
+    name: "{{ monitor_user }}"
+    groups: docker
+    append: true
+  when: docker_group.rc == 0
+  notify: Restart host worker
+
+- name: Check the installed uv
+  ansible.builtin.command: /usr/local/bin/uv --version
+  register: uv_installed
+  changed_when: false
+  failed_when: false
+
+- name: Install uv {{ uv_version }}
+  ansible.builtin.shell:
+    cmd: set -o pipefail && curl -LsSf https://astral.sh/uv/{{ uv_version }}/install.sh | sh
+    executable: /bin/bash
+  environment:
+    UV_INSTALL_DIR: /usr/local/bin
+    UV_NO_MODIFY_PATH: "1"
+  when: uv_version not in (uv_installed.stdout | default(''))
+  changed_when: true
+
+- name: Create the install directory
+  ansible.builtin.file:
+    path: "{{ monitor_install_dir }}"
+    state: directory
+    owner: "{{ monitor_user }}"
+    group: "{{ monitor_user }}"
+    mode: "0755"
+
+- name: Check out the code
+  ansible.builtin.git:
+    repo: "{{ monitor_repo_url }}"
+    dest: "{{ monitor_install_dir }}"
+    version: "{{ monitor_version }}"
+  become: true
+  become_user: "{{ monitor_user }}"
+  notify: Restart host worker
+
+- name: Install Python dependencies
+  ansible.builtin.command: /usr/local/bin/uv sync --frozen --no-dev
+  args:
+    chdir: "{{ monitor_install_dir }}"
+  environment:
+    HOME: "{{ monitor_home }}"
+  become: true
+  become_user: "{{ monitor_user }}"
+  register: uv_sync
+  changed_when: uv_sync.stderr is search('Installed|Uninstalled')
+  notify: Restart host worker
+
+- name: Install the systemd unit
+  ansible.builtin.template:
+    src: homelab-monitor-host.service.j2
+    dest: /etc/systemd/system/homelab-monitor-host.service
+    mode: "0644"
+  notify: Restart host worker
+
+- name: Enable and start the host worker
+  ansible.builtin.systemd_service:
+    name: homelab-monitor-host
+    enabled: true
+    state: started
+    daemon_reload: true

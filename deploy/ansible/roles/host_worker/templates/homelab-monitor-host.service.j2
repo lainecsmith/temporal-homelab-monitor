@@ -1,0 +1,21 @@
+# Managed by Ansible (deploy/ansible). Local edits are overwritten.
+[Unit]
+Description=homelab-monitor host worker
+Wants=network-online.target
+After=network-online.target docker.service
+
+[Service]
+User={{ monitor_user }}
+WorkingDirectory={{ monitor_install_dir }}
+ExecStart={{ monitor_install_dir }}/.venv/bin/python worker.py --role host --address {{ temporal_address }} --namespace {{ temporal_namespace }}{% if monitor_hostname is defined %} --hostname {{ monitor_hostname }}{% endif %}
+
+Environment=PYTHONUNBUFFERED=1
+# worker.py exits if it can't register with Temporal; keep retrying.
+Restart=always
+RestartSec=10
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+
+[Install]
+WantedBy=multi-user.target

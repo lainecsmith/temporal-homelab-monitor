@@ -1,0 +1,34 @@
+- name: Require temporal_address
+  ansible.builtin.assert:
+    that: temporal_address is defined
+    fail_msg: Set temporal_address (host:port) in the inventory.
+
+- name: Require Docker Compose
+  ansible.builtin.command: docker compose version
+  changed_when: false
+
+- name: Install git
+  ansible.builtin.apt:
+    name: git
+    state: present
+    update_cache: true
+    cache_valid_time: 86400
+
+- name: Check out the code
+  ansible.builtin.git:
+    repo: "{{ monitor_repo_url }}"
+    dest: "{{ controller_install_dir }}"
+    version: "{{ monitor_version }}"
+
+- name: Write the Compose settings
+  ansible.builtin.template:
+    src: compose.env.j2
+    dest: "{{ controller_install_dir }}/deploy/.env"
+    mode: "0644"
+
+- name: Build and start the controller and dashboard
+  ansible.builtin.command: docker compose -f deploy/docker-compose.yml up -d --build --remove-orphans
+  args:
+    chdir: "{{ controller_install_dir }}"
+  register: compose
+  changed_when: compose.stderr is search('Recreated|Created|Started')

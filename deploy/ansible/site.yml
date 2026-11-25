@@ -1,0 +1,11 @@
+# Deploy everything: ansible-playbook site.yml
+# Just the hosts:     ansible-playbook site.yml --limit monitored
+- name: Controller and dashboard
+  hosts: controller
+  become: true
+  roles: [controller]
+
+- name: Host workers
+  hosts: monitored
+  become: true
+  roles: [host_worker]

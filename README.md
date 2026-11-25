@@ -1,41 +1,106 @@
-# homelab-monitor: Step 1 walking skeleton
+# homelab-monitor
+
+Runs as two roles: one central box with the Temporal server, the controller
+worker and the dashboard, and a host worker on every homelab machine you want
+to monitor (the central box can be one of them).
 
 ## Run it
 
+Install dependencies on every machine:
+
     uv sync
 
-    temporal server start-dev            # terminal 1
-    uv run worker.py                     # terminal 2 (controller + host worker; registers the host's entity)
-    uv run starter.py                    # terminal 3 (optional: prints the snapshot)
+### Central box
 
-Query it any time:
+    # Temporal server, reachable from the LAN (Web UI on :8233)
+    temporal server start-dev --ip 0.0.0.0
 
-    temporal workflow query --workflow-id host-$(hostname -s | tr A-Z a-z) --type snapshot
+    # controller worker: runs the HostWorkflow for every host
+    uv run worker.py --role controller
+
+    # dashboard, from the repo root; open http://localhost:8000
+    uv run uvicorn dashboard.app:app --port 8000
+
+The dev server keeps everything in memory, so after restarting it, a host only
+reappears once its worker restarts.
+
+The dashboard binds to loopback and has no authentication. Its settings and
+details are in [dashboard/README.md](dashboard/README.md).
+
+### Each homelab host
+
+    uv run worker.py --role host --address <central-box>:7233
+
+On startup the host worker registers its own entity workflow (`host-<name>`,
+where `<name>` is the short, lowercase hostname; override with
+`--hostname`) and triggers an immediate refresh. There's no separate
+registration step. Both roles also take `--namespace` (default `default`).
+
+To see a host's first snapshot from the command line (optional; this also
+registers the host if its worker hasn't yet):
+
+    uv run starter.py --host <name> --address <central-box>:7233
+
+### Talking to a host
+
+Query its snapshot:
+
+    temporal workflow query --address <central-box>:7233 --workflow-id host-<name> --type snapshot
 
 Force a refresh:
 
-    temporal workflow signal --workflow-id host-<name> --name force_refresh
+    temporal workflow signal --address <central-box>:7233 --workflow-id host-<name> --name force_refresh
 
 Check for updates now (otherwise every 6 hours; results are in the snapshot's `updates`):
 
-    temporal workflow signal --workflow-id host-<name> --name check_updates
+    temporal workflow signal --address <central-box>:7233 --workflow-id host-<name> --name check_updates
 
-Web UI: http://localhost:8233
+The dashboard's Refresh and Check for updates buttons send the same signals.
 
-## Step 2 checks (split the roles)
+### Offline hosts
 
-    # central box
-    uv run worker.py --role controller --address <server>:7233
-    # each homelab host
-    uv run worker.py --role host --address <server>:7233
-    # start the entity for a host
-    uv run starter.py --host <name> --address <server>:7233
+Stop a host worker and its status flips to "offline" within ~20s of the next
+cycle (schedule_to_start timeout). Start it again and it returns to "online".
 
-Kill the host worker: status flips to "offline" within ~20s of the next cycle
-(schedule_to_start timeout). Restart it: status returns to "online".
+## Deploy
 
-Note: dev server binds to localhost by default. For LAN workers start it with
-`temporal server start-dev --ip 0.0.0.0`.
+Ansible deploys both roles against an existing Temporal server:
+
+- **Central box:** the controller worker and the dashboard run in Docker
+  Compose ([deploy/docker-compose.yml](deploy/docker-compose.yml)). The machine
+  needs Docker with the Compose plugin.
+- **Each monitored host:** the host worker runs natively as the
+  `homelab-monitor-host` systemd service, as a `homelab-monitor` system user.
+  It isn't containerized because it reports on the host itself. Supports
+  Ubuntu and 64-bit Raspberry Pi OS; 32-bit is refused because the Temporal
+  Python SDK has no 32-bit ARM builds.
+
+Hosts clone this repo from GitHub, so push before deploying. Then, from your
+own machine:
+
+    cd deploy/ansible
+    cp inventory.example.yml inventory.yml    # fill in temporal_address and your machines
+    ansible-playbook site.yml                 # add --ask-become-pass if sudo needs a password
+
+Re-run the same command to update everything. To update only the hosts, add
+`--limit monitored`. To deploy a branch, tag or commit other than `main`, add
+`-e monitor_version=<ref>`. Deploy the controller and the host workers
+together so their code stays in step.
+
+On the central box, `temporal_address` has to be the server's LAN address,
+not `localhost`, because the containers resolve `localhost` to themselves. The
+dashboard listens on port 8000 on all interfaces and has no authentication;
+set `dashboard_bind: 127.0.0.1` in the inventory to keep it local.
+
+If Docker is already installed on a host, the playbook adds the service user
+to the `docker` group. That gives the user root-equivalent access to the
+machine; it's what lets the worker list containers. If you install Docker
+later, re-run the playbook.
+
+Logs:
+
+    journalctl -u homelab-monitor-host -f                                          # on a host
+    docker compose -f /opt/homelab-monitor-controller/deploy/docker-compose.yml logs -f   # central box
 
 ## Docker containers
 

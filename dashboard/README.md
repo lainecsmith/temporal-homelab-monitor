@@ -7,9 +7,8 @@ last known) when the controller or Temporal is down.
 
 ## Run it
 
-From the repo root (it imports `common.py`):
+On the central box, from the repo root (it imports `common.py`), after `uv sync`:
 
-    uv add fastapi "uvicorn[standard]"
     uv run uvicorn dashboard.app:app --port 8000      # then open http://localhost:8000
 
 Binds to loopback. There's no authentication yet and the refresh and update-check buttons act
@@ -21,7 +20,6 @@ Settings (environment variables): `TEMPORAL_ADDRESS` (localhost:7233), `TEMPORAL
 
 ## Tests
 
-    uv add --dev pytest
     uv run pytest dashboard                                  # backend logic, no Temporal needed
     node --test dashboard/frontend_tests/*.test.mjs          # frontend, no browser or npm install
 

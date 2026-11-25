@@ -1,0 +1,9 @@
+monitor_repo_url: https://github.com/lainecsmith/temporal-homelab-monitor.git
+monitor_version: main
+monitor_install_dir: /opt/homelab-monitor
+monitor_user: homelab-monitor
+monitor_home: /var/lib/homelab-monitor
+uv_version: "0.11.17"
+temporal_namespace: default
+# temporal_address: required, set in the inventory
+# monitor_hostname: optional, defaults to the machine's short hostname

@@ -1,0 +1,5 @@
+- name: Restart host worker
+  ansible.builtin.systemd_service:
+    name: homelab-monitor-host
+    state: restarted
+    daemon_reload: true

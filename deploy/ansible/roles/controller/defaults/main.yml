@@ -1,0 +1,7 @@
+monitor_repo_url: https://github.com/lainecsmith/temporal-homelab-monitor.git
+monitor_version: main
+controller_install_dir: /opt/homelab-monitor-controller
+temporal_namespace: default
+dashboard_bind: 0.0.0.0
+dashboard_port: 8000
+# temporal_address: required, set in the inventory

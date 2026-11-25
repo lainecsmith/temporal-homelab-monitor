@@ -1,0 +1,36 @@
+# Central box: controller worker + dashboard. Settings come from deploy/.env
+# (written by Ansible, or copy .env.example by hand).
+name: homelab-monitor
+
+x-app: &app
+  build:
+    context: ..
+    dockerfile: deploy/Dockerfile
+  image: homelab-monitor:latest
+  restart: unless-stopped
+
+services:
+  controller:
+    <<: *app
+    command:
+      - python
+      - worker.py
+      - --role=controller
+      - --address=${TEMPORAL_ADDRESS:?set TEMPORAL_ADDRESS in deploy/.env}
+      - --namespace=${TEMPORAL_NAMESPACE:-default}
+
+  dashboard:
+    <<: *app
+    command: ["uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      TEMPORAL_ADDRESS: ${TEMPORAL_ADDRESS:?set TEMPORAL_ADDRESS in deploy/.env}
+      TEMPORAL_NAMESPACE: ${TEMPORAL_NAMESPACE:-default}
+      DASHBOARD_DB: /data/dashboard.sqlite3
+    ports:
+      # No authentication: bind to 127.0.0.1 if the LAN isn't trusted.
+      - "${DASHBOARD_BIND:-0.0.0.0}:${DASHBOARD_PORT:-8000}:8000"
+    volumes:
+      - dashboard-data:/data
+
+volumes:
+  dashboard-data:

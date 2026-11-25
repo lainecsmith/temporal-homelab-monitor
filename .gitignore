@@ -20,3 +20,9 @@ htmlcov/
 
 # macOS
 .DS_Store
+
+# Ansible inventory (your machines)
+deploy/ansible/inventory.yml
+
+# Dashboard local data
+dashboard.sqlite3*

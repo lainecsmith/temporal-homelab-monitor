@@ -1,0 +1,22 @@
+# Copy to inventory.yml (git-ignored) and fill in your machines.
+all:
+  vars:
+    temporal_address: 192.168.1.10:7233   # required
+    # temporal_namespace: default
+    # monitor_version: main               # branch, tag or commit to deploy
+  children:
+    controller:                           # exactly one: runs controller + dashboard in Docker
+      hosts:
+        central:
+          ansible_host: 192.168.1.10
+          # dashboard_bind: 127.0.0.1     # default 0.0.0.0 (LAN); there's no authentication
+          # dashboard_port: 8000
+    monitored:                            # every machine to monitor (can include the central box)
+      hosts:
+        central:
+        nas:
+          ansible_host: 192.168.1.20
+        pi-garage:
+          ansible_host: 192.168.1.30
+          ansible_user: pi
+          # monitor_hostname: pi-garage   # override the name it registers as (default: its hostname)
